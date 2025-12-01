@@ -6,17 +6,17 @@ class ShoreSquadApp {
 
     init() {
         console.log('🌊 ShoreSquad App Initialized!');
-        
+
         // Initialize all modules
         this.setupNavigation();
         this.setupScrollEffects();
         this.setupInteractiveElements();
         this.setupPerformanceOptimizations();
         this.setupAccessibility();
-        
+
         // Simulate loading states
         this.handleLoadingStates();
-        
+
         console.log('✅ All systems ready! Let\'s clean some beaches! 🏖️');
     }
 
@@ -25,12 +25,12 @@ class ShoreSquadApp {
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-links a');
-        
+
         // Mobile menu toggle
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
-                navToggle.setAttribute('aria-expanded', 
+                navToggle.setAttribute('aria-expanded',
                     navToggle.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
                 );
             });
@@ -40,20 +40,20 @@ class ShoreSquadApp {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                
+
                 if (href.startsWith('#')) {
                     e.preventDefault();
                     const targetId = href.substring(1);
                     const targetElement = document.getElementById(targetId);
-                    
+
                     if (targetElement) {
                         // Close mobile menu if open
                         navMenu?.classList.remove('active');
-                        
+
                         // Smooth scroll with offset for fixed navbar
                         const navHeight = document.querySelector('.navbar')?.offsetHeight || 0;
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                        
+
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
@@ -73,15 +73,15 @@ class ShoreSquadApp {
     updateActiveNavigation() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-        
+
         let currentSection = '';
         const navHeight = document.querySelector('.navbar')?.offsetHeight || 0;
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop - navHeight - 100;
             const sectionHeight = section.offsetHeight;
-            
-            if (window.pageYOffset >= sectionTop && 
+
+            if (window.pageYOffset >= sectionTop &&
                 window.pageYOffset < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
@@ -99,7 +99,7 @@ class ShoreSquadApp {
     setupScrollEffects() {
         // Navbar background on scroll
         const navbar = document.querySelector('.navbar');
-        
+
         window.addEventListener('scroll', throttle(() => {
             if (window.scrollY > 50) {
                 navbar?.classList.add('scrolled');
@@ -130,7 +130,7 @@ class ShoreSquadApp {
         const revealElements = document.querySelectorAll(
             '.feature-card, .hero-card, .beach-item, .cta-content'
         );
-        
+
         revealElements.forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -160,16 +160,16 @@ class ShoreSquadApp {
     setupButtons() {
         // Add ripple effect to buttons
         const buttons = document.querySelectorAll('.btn');
-        
+
         buttons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 // Create ripple element
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
+
                 ripple.style.cssText = `
                     position: absolute;
                     border-radius: 50%;
@@ -182,11 +182,11 @@ class ShoreSquadApp {
                     height: ${size}px;
                     pointer-events: none;
                 `;
-                
+
                 this.style.position = 'relative';
                 this.style.overflow = 'hidden';
                 this.appendChild(ripple);
-                
+
                 // Remove ripple after animation
                 setTimeout(() => {
                     ripple.remove();
@@ -210,13 +210,13 @@ class ShoreSquadApp {
     setupCards() {
         // Add interactive hover effects to cards
         const cards = document.querySelectorAll('.feature-card, .beach-item');
-        
+
         cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 this.style.transform = 'translateY(-8px) scale(1.02)';
             });
-            
-            card.addEventListener('mouseleave', function() {
+
+            card.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
@@ -225,7 +225,7 @@ class ShoreSquadApp {
     setupMapInteractions() {
         const mapPlaceholder = document.querySelector('.map-placeholder');
         const mapLoading = document.querySelector('.map-loading');
-        
+
         if (mapPlaceholder && mapLoading) {
             mapPlaceholder.addEventListener('click', () => {
                 mapLoading.innerHTML = `
@@ -235,7 +235,7 @@ class ShoreSquadApp {
                         <small>This would integrate with a real mapping service like Mapbox or Google Maps</small>
                     </div>
                 `;
-                
+
                 // Simulate map loading
                 setTimeout(() => {
                     mapLoading.innerHTML = `
@@ -253,23 +253,23 @@ class ShoreSquadApp {
     setupFormInteractions() {
         // Enhanced form interactions
         const inputs = document.querySelectorAll('input, textarea, select');
-        
+
         inputs.forEach(input => {
             // Floating label effect
-            input.addEventListener('focus', function() {
+            input.addEventListener('focus', function () {
                 this.parentElement?.classList.add('focused');
             });
-            
-            input.addEventListener('blur', function() {
+
+            input.addEventListener('blur', function () {
                 if (!this.value) {
                     this.parentElement?.classList.remove('focused');
                 }
             });
-            
+
             // Real-time validation feedback
-            input.addEventListener('input', function() {
+            input.addEventListener('input', function () {
                 this.classList.remove('error', 'success');
-                
+
                 if (this.type === 'email') {
                     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
                     this.classList.add(isValid ? 'success' : 'error');
@@ -282,10 +282,10 @@ class ShoreSquadApp {
     setupPerformanceOptimizations() {
         // Lazy loading for images
         this.setupLazyLoading();
-        
+
         // Intersection Observer for animations
         this.setupIntersectionObserver();
-        
+
         // Debounced resize handler
         window.addEventListener('resize', debounce(() => {
             this.handleResize();
@@ -295,7 +295,7 @@ class ShoreSquadApp {
     setupLazyLoading() {
         // Image lazy loading with placeholder
         const images = document.querySelectorAll('img[data-src]');
-        
+
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -307,7 +307,7 @@ class ShoreSquadApp {
                     }
                 });
             });
-            
+
             images.forEach(img => imageObserver.observe(img));
         }
     }
@@ -315,7 +315,7 @@ class ShoreSquadApp {
     setupIntersectionObserver() {
         // Optimize animations based on viewport visibility
         const animatedElements = document.querySelectorAll('.hero-card');
-        
+
         const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -325,7 +325,7 @@ class ShoreSquadApp {
                 }
             });
         });
-        
+
         animatedElements.forEach(el => {
             animationObserver.observe(el);
         });
@@ -341,13 +341,13 @@ class ShoreSquadApp {
     setupAccessibility() {
         // Keyboard navigation enhancement
         this.setupKeyboardNavigation();
-        
+
         // Screen reader announcements
         this.setupScreenReaderSupport();
-        
+
         // Focus management
         this.setupFocusManagement();
-        
+
         // Reduced motion preferences
         this.respectMotionPreferences();
     }
@@ -361,11 +361,11 @@ class ShoreSquadApp {
                 const mainContent = document.querySelector('main') || document.querySelector('.hero');
                 mainContent?.focus();
             }
-            
+
             // Enhanced button keyboard interaction
             if (e.key === 'Enter' || e.key === ' ') {
                 const focusedElement = document.activeElement;
-                if (focusedElement?.classList.contains('btn') || 
+                if (focusedElement?.classList.contains('btn') ||
                     focusedElement?.classList.contains('nav-toggle')) {
                     e.preventDefault();
                     focusedElement.click();
@@ -387,7 +387,7 @@ class ShoreSquadApp {
             overflow: hidden;
         `;
         document.body.appendChild(liveRegion);
-        
+
         this.liveRegion = liveRegion;
     }
 
@@ -409,10 +409,10 @@ class ShoreSquadApp {
                 const focusableElements = modal.querySelectorAll(
                     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
                 );
-                
+
                 const firstElement = focusableElements[0];
                 const lastElement = focusableElements[focusableElements.length - 1];
-                
+
                 if (e.shiftKey) {
                     if (document.activeElement === firstElement) {
                         e.preventDefault();
@@ -431,7 +431,7 @@ class ShoreSquadApp {
     respectMotionPreferences() {
         // Disable animations if user prefers reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         if (prefersReducedMotion) {
             document.documentElement.style.setProperty('--transition-fast', '0ms');
             document.documentElement.style.setProperty('--transition-base', '0ms');
@@ -444,7 +444,7 @@ class ShoreSquadApp {
         // Simulate app loading
         const loader = this.createLoader();
         document.body.appendChild(loader);
-        
+
         // Remove loader after initialization
         setTimeout(() => {
             loader.style.opacity = '0';
@@ -471,7 +471,7 @@ class ShoreSquadApp {
             font-family: 'Poppins', sans-serif;
             transition: opacity 0.3s ease;
         `;
-        
+
         loader.innerHTML = `
             <div style="text-align: center;">
                 <i class="fas fa-water" style="font-size: 4rem; margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
@@ -482,7 +482,7 @@ class ShoreSquadApp {
                 </div>
             </div>
         `;
-        
+
         // Add loading animation styles
         const style = document.createElement('style');
         style.textContent = `
@@ -496,24 +496,272 @@ class ShoreSquadApp {
             }
         `;
         document.head.appendChild(style);
-        
+
         return loader;
     }
 
-    // ===== WEATHER API SIMULATION =====
-    async simulateWeatherData() {
-        // Simulate weather API call
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve({
-                    temperature: 22,
-                    condition: 'sunny',
-                    windSpeed: 15,
-                    humidity: 65,
-                    cleanupRating: 'perfect'
-                });
-            }, 1000);
+    // ===== NEA WEATHER API INTEGRATION =====
+    async fetchNEAWeatherData() {
+        try {
+            // Fetch current weather conditions from NEA
+            const [weatherResponse, forecastResponse] = await Promise.all([
+                fetch('https://api.data.gov.sg/v1/environment/air-temperature'),
+                fetch('https://api.data.gov.sg/v1/environment/24-hour-weather-forecast')
+            ]);
+
+            const weatherData = await weatherResponse.json();
+            const forecastData = await forecastResponse.json();
+
+            return {
+                current: this.processCurrentWeather(weatherData),
+                forecast: this.processForecast(forecastData)
+            };
+        } catch (error) {
+            console.error('Weather API Error:', error);
+            return this.getFallbackWeatherData();
+        }
+    }
+
+    processCurrentWeather(data) {
+        if (!data.items || data.items.length === 0) {
+            return this.getFallbackWeatherData().current;
+        }
+
+        const latest = data.items[0];
+        const readings = latest.readings;
+
+        // Find reading closest to Pasir Ris (East region)
+        const eastReading = readings.find(r =>
+            r.station_id === 'S24' || // Pasir Ris
+            r.station_id === 'S06' || // Changi
+            r.station_id === 'S43'    // Kim Chuan Road
+        ) || readings[0];
+
+        return {
+            temperature: Math.round(eastReading.value),
+            condition: this.getConditionFromTemp(eastReading.value),
+            timestamp: latest.timestamp,
+            location: 'Pasir Ris Area'
+        };
+    }
+
+    processForecast(data) {
+        if (!data.items || data.items.length === 0) {
+            return this.getFallbackWeatherData().forecast;
+        }
+
+        const forecast = data.items[0].forecasts;
+        return forecast.slice(0, 7).map(day => ({
+            date: day.date,
+            condition: day.forecast.toLowerCase(),
+            tempHigh: day.temperature.high,
+            tempLow: day.temperature.low,
+            humidity: day.relative_humidity,
+            windDirection: day.wind.direction,
+            windSpeed: day.wind.speed
+        }));
+    }
+
+    getConditionFromTemp(temp) {
+        if (temp > 32) return 'hot';
+        if (temp > 28) return 'warm';
+        if (temp > 24) return 'pleasant';
+        return 'cool';
+    }
+
+    getFallbackWeatherData() {
+        return {
+            current: {
+                temperature: 28,
+                condition: 'pleasant',
+                location: 'Pasir Ris Area',
+                timestamp: new Date().toISOString()
+            },
+            forecast: this.generateFallbackForecast()
+        };
+    }
+
+    generateFallbackForecast() {
+        const conditions = ['sunny', 'partly cloudy', 'cloudy', 'light rain'];
+        const forecast = [];
+        const today = new Date();
+
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+
+            forecast.push({
+                date: date.toISOString().split('T')[0],
+                condition: conditions[Math.floor(Math.random() * conditions.length)],
+                tempHigh: Math.round(28 + Math.random() * 6),
+                tempLow: Math.round(24 + Math.random() * 4),
+                humidity: Math.round(60 + Math.random() * 25),
+                windDirection: 'NE',
+                windSpeed: Math.round(10 + Math.random() * 10)
+            });
+        }
+
+        return forecast;
+    }
+
+    // ===== WEATHER UI RENDERING =====
+    async initializeWeatherSection() {
+        const weatherData = await this.fetchNEAWeatherData();
+        this.renderCurrentWeather(weatherData.current);
+        this.renderForecast(weatherData.forecast);
+        this.renderCleanupRecommendation(weatherData);
+    }
+
+    renderCurrentWeather(current) {
+        const currentWeatherEl = document.querySelector('.current-weather');
+        const weatherIcon = this.getWeatherIcon(current.condition);
+
+        currentWeatherEl.innerHTML = `
+            <div class="current-weather-content">
+                <div class="weather-main">
+                    <div class="weather-icon">
+                        <i class="${weatherIcon}"></i>
+                    </div>
+                    <div class="weather-info">
+                        <h3>${current.temperature}°C</h3>
+                        <p class="condition">${this.capitalizeFirst(current.condition)}</p>
+                        <p class="location">📍 ${current.location}</p>
+                    </div>
+                </div>
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Updated: ${this.formatTime(current.timestamp)}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    renderForecast(forecast) {
+        const forecastGrid = document.getElementById('forecast-grid');
+
+        forecastGrid.innerHTML = forecast.map(day => `
+            <div class="forecast-day">
+                <div class="day-name">${this.formatDay(day.date)}</div>
+                <div class="weather-icon small">
+                    <i class="${this.getWeatherIcon(day.condition)}"></i>
+                </div>
+                <div class="temp-range">
+                    <span class="temp-high">${day.tempHigh}°</span>
+                    <span class="temp-low">${day.tempLow}°</span>
+                </div>
+                <div class="condition">${this.capitalizeFirst(day.condition)}</div>
+                <div class="wind-info">
+                    <i class="fas fa-wind"></i>
+                    <span>${day.windSpeed} km/h</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderCleanupRecommendation(weatherData) {
+        const adviceEl = document.getElementById('cleanup-advice');
+        const recommendation = this.generateCleanupAdvice(weatherData);
+
+        adviceEl.innerHTML = `
+            <div class="advice-rating ${recommendation.rating}">
+                <i class="${recommendation.icon}"></i>
+                <strong>${recommendation.title}</strong>
+            </div>
+            <p>${recommendation.message}</p>
+        `;
+    }
+
+    generateCleanupAdvice(weatherData) {
+        const current = weatherData.current;
+        const forecast = weatherData.forecast;
+        const todayForecast = forecast[0];
+
+        // Check conditions for cleanup suitability
+        const temp = current.temperature;
+        const isRaining = todayForecast.condition.includes('rain');
+        const windSpeed = todayForecast.windSpeed;
+
+        if (isRaining) {
+            return {
+                rating: 'poor',
+                icon: 'fas fa-cloud-rain',
+                title: 'Not Ideal for Cleanup',
+                message: 'Rain expected today. Consider rescheduling for better conditions.'
+            };
+        }
+
+        if (temp > 35 || windSpeed > 25) {
+            return {
+                rating: 'caution',
+                icon: 'fas fa-exclamation-triangle',
+                title: 'Cleanup with Caution',
+                message: temp > 35 ?
+                    'Very hot conditions. Bring extra water and take frequent breaks.' :
+                    'Strong winds expected. Secure loose items and be extra careful.'
+            };
+        }
+
+        if (temp >= 25 && temp <= 32 && windSpeed <= 20) {
+            return {
+                rating: 'excellent',
+                icon: 'fas fa-thumbs-up',
+                title: 'Perfect Cleanup Weather!',
+                message: 'Ideal conditions for beach cleanup. Great temperature and gentle winds.'
+            };
+        }
+
+        return {
+            rating: 'good',
+            icon: 'fas fa-check-circle',
+            title: 'Good Cleanup Conditions',
+            message: 'Weather looks favorable for outdoor activities. Have a great cleanup!'
+        };
+    }
+
+    getWeatherIcon(condition) {
+        const iconMap = {
+            'sunny': 'fas fa-sun',
+            'clear': 'fas fa-sun',
+            'partly cloudy': 'fas fa-cloud-sun',
+            'cloudy': 'fas fa-cloud',
+            'overcast': 'fas fa-cloud',
+            'light rain': 'fas fa-cloud-rain',
+            'rain': 'fas fa-cloud-rain',
+            'heavy rain': 'fas fa-cloud-showers-heavy',
+            'thunderstorm': 'fas fa-bolt',
+            'hot': 'fas fa-thermometer-full',
+            'warm': 'fas fa-thermometer-half',
+            'pleasant': 'fas fa-sun',
+            'cool': 'fas fa-thermometer-quarter'
+        };
+
+        return iconMap[condition.toLowerCase()] || 'fas fa-sun';
+    }
+
+    formatDay(dateStr) {
+        const date = new Date(dateStr);
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        if (date.toDateString() === today.toDateString()) return 'Today';
+        if (date.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
+
+        return date.toLocaleDateString('en-SG', { weekday: 'short' });
+    }
+
+    formatTime(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleTimeString('en-SG', {
+            hour: '2-digit',
+            minute: '2-digit'
         });
+    }
+
+    capitalizeFirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     // ===== CREW MANAGEMENT =====
@@ -528,7 +776,7 @@ class ShoreSquadApp {
             totalCleanups: 23,
             impact: '2.3 tons collected'
         };
-        
+
         console.log('🤝 Crew features initialized:', crewData);
         return crewData;
     }
@@ -562,17 +810,17 @@ function debounce(func, wait) {
 // ===== FEATURE DEMONSTRATIONS =====
 function demonstrateFeatures() {
     console.log('🚀 ShoreSquad Features Demo:');
-    
+
     // Simulate weather check
     setTimeout(() => {
         console.log('☀️ Weather: Perfect conditions for beach cleanup!');
     }, 2000);
-    
+
     // Simulate crew notifications
     setTimeout(() => {
         console.log('👥 Crew Update: 3 new members joined your cleanup crew!');
     }, 4000);
-    
+
     // Simulate cleanup event
     setTimeout(() => {
         console.log('📍 Event Alert: Beach cleanup starting at Bondi Beach in 1 hour!');
@@ -583,17 +831,22 @@ function demonstrateFeatures() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the main app
     window.shoreSquadApp = new ShoreSquadApp();
-    
+
     // Run feature demonstrations
     demonstrateFeatures();
-    
+
     // Service Worker registration (for PWA capabilities)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             console.log('📱 PWA capabilities ready (Service Worker would be registered here)');
         });
     }
-    
+
+    // Initialize weather section
+    setTimeout(() => {
+        window.shoreSquadApp.initializeWeatherSection();
+    }, 1000);
+
     // Initialize crew features
     setTimeout(() => {
         window.shoreSquadApp.initializeCrewFeatures();

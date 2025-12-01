@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rally your crew, track weather, and hit the next beach cleanup with ShoreSquad - the dope map app for eco-warriors!">
-    <meta name="keywords" content="beach cleanup, environmental action, weather tracking, crew coordination, eco-friendly">
+    <meta name="description"
+        content="Rally your crew, track weather, and hit the next beach cleanup with ShoreSquad - the dope map app for eco-warriors!">
+    <meta name="keywords"
+        content="beach cleanup, environmental action, weather tracking, crew coordination, eco-friendly">
     <meta name="author" content="ShoreSquad">
-    
+
     <title>ShoreSquad - Rally Your Crew for Beach Cleanups</title>
-    
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -35,13 +40,13 @@
                     <span>ShoreSquad</span>
                 </a>
             </div>
-            
+
             <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            
+
             <div class="nav-menu">
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -67,7 +72,8 @@
                     <br>Clean Our <span class="gradient-text">Shores</span>
                 </h1>
                 <p class="hero-description">
-                    Track weather, coordinate with friends, and make beach cleanups epic with our interactive map app. Join the movement of young eco-warriors making waves! 🌊
+                    Track weather, coordinate with friends, and make beach cleanups epic with our interactive map app.
+                    Join the movement of young eco-warriors making waves! 🌊
                 </p>
                 <div class="hero-actions">
                     <button class="btn-primary btn-large">
@@ -95,10 +101,12 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-card weather-card">
+                <div class="hero-card weather-card"
+                    onclick="document.getElementById('weather').scrollIntoView({behavior: 'smooth'})"
+                    style="cursor: pointer;">
                     <i class="fas fa-sun"></i>
                     <span>Perfect Beach Day!</span>
-                    <small>22°C • Light Breeze</small>
+                    <small>28°C • Light Breeze</small>
                 </div>
                 <div class="hero-card crew-card">
                     <div class="avatar-group">
@@ -125,40 +133,44 @@
                 <h2>Why ShoreSquad Rocks</h2>
                 <p>Everything you need to organize epic beach cleanups with your crew</p>
             </div>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Rally Your Crew</h3>
-                    <p>Invite friends, coordinate schedules, and build your eco-warrior squad with seamless social features.</p>
+                    <p>Invite friends, coordinate schedules, and build your eco-warrior squad with seamless social
+                        features.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-cloud-sun"></i>
                     </div>
                     <h3>Weather Tracking</h3>
-                    <p>Real-time weather updates and forecasts to plan the perfect cleanup day when conditions are ideal.</p>
+                    <p>Real-time weather updates and forecasts to plan the perfect cleanup day when conditions are
+                        ideal.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-map"></i>
                     </div>
                     <h3>Interactive Maps</h3>
-                    <p>Discover nearby beaches, find cleanup hotspots, and navigate with our smart mapping technology.</p>
+                    <p>Discover nearby beaches, find cleanup hotspots, and navigate with our smart mapping technology.
+                    </p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
                     <h3>Impact Tracking</h3>
-                    <p>Track your environmental impact, earn badges, and compete with other crews for maximum motivation.</p>
+                    <p>Track your environmental impact, earn badges, and compete with other crews for maximum
+                        motivation.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-calendar"></i>
@@ -166,7 +178,7 @@
                     <h3>Event Planning</h3>
                     <p>Schedule cleanups, set reminders, and coordinate logistics with built-in planning tools.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-share-alt"></i>
@@ -185,16 +197,22 @@
                 <h2>Find Your Next Beach Cleanup</h2>
                 <p>Explore beaches near you and see where cleanups are happening</p>
             </div>
-            
+
             <div class="map-container">
-                <div id="beach-map" class="map-placeholder">
-                    <div class="map-loading">
-                        <i class="fas fa-map"></i>
-                        <p>Interactive Map Loading...</p>
-                        <small>Click to explore beaches and cleanup events</small>
+                <div id="beach-map" class="map-iframe-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6234567890123!2d103.955574!3d1.381497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjInNDkuNCJOIDEwM8KwNTcnMjAuMSJF!5e0!3m2!1sen!2ssg!4v1638360000000!5m2!1sen!2ssg"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="Next Beach Cleanup Location - Pasir Ris">
+                    </iframe>
+                    <div class="map-overlay">
+                        <div class="next-cleanup-marker">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Next Cleanup: Pasir Ris</span>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="map-sidebar">
                     <div class="search-box">
                         <input type="text" placeholder="Search beaches or locations..." aria-label="Search beaches">
@@ -202,7 +220,7 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    
+
                     <div class="filter-options">
                         <h4>Filter by:</h4>
                         <label class="checkbox-label">
@@ -221,29 +239,63 @@
                             Weather Suitable
                         </label>
                     </div>
-                    
+
                     <div class="nearby-beaches">
                         <h4>Nearby Beaches</h4>
                         <div class="beach-list">
                             <div class="beach-item">
                                 <div class="beach-info">
-                                    <h5>Bondi Beach</h5>
-                                    <p>3.2 km away • Next cleanup: Tomorrow 9AM</p>
+                                    <h5>Pasir Ris Beach</h5>
+                                    <p>Next cleanup location • Today 9AM</p>
                                 </div>
                                 <div class="beach-status">
-                                    <span class="status-badge active">Active</span>
+                                    <span class="status-badge active">Next Up</span>
                                 </div>
                             </div>
                             <div class="beach-item">
                                 <div class="beach-info">
-                                    <h5>Manly Beach</h5>
-                                    <p>7.8 km away • Next cleanup: Friday 2PM</p>
+                                    <h5>East Coast Park</h5>
+                                    <p>5.2 km away • Next cleanup: Friday 2PM</p>
                                 </div>
                                 <div class="beach-status">
                                     <span class="status-badge planned">Planned</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Section -->
+    <section id="weather" class="weather-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Weather Forecast</h2>
+                <p>Check the perfect conditions for your next beach cleanup</p>
+            </div>
+
+            <div class="weather-container">
+                <div class="current-weather">
+                    <div class="weather-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading current weather...</p>
+                    </div>
+                </div>
+
+                <div class="forecast-container">
+                    <h3>7-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-grid">
+                        <!-- Forecast items will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="cleanup-recommendation">
+                    <div class="recommendation-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Cleanup Recommendation</h4>
+                        <p id="cleanup-advice">Analyzing weather conditions...</p>
                     </div>
                 </div>
             </div>
@@ -287,7 +339,7 @@
                         <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-links">
                     <div class="link-group">
                         <h4>Product</h4>
@@ -298,7 +350,7 @@
                             <li><a href="#">Updates</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="link-group">
                         <h4>Community</h4>
                         <ul>
@@ -308,7 +360,7 @@
                             <li><a href="#">Stories</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="link-group">
                         <h4>Support</h4>
                         <ul>
@@ -320,7 +372,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 ShoreSquad. All rights reserved. Made with 💙 for our oceans.</p>
             </div>
@@ -330,4 +382,5 @@
     <!-- JavaScript -->
     <script src="js/app.js"></script>
 </body>
+
 </html>
